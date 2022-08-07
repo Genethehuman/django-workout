@@ -1,0 +1,18 @@
+{% extends 'base.html' %}  
+{% load crispy_forms_tags %}
+
+
+{% block pizda %}
+
+
+
+<form method="POST"> {% csrf_token %} 
+    <dev>
+        {{ form|crispy }}
+    </dev>
+    <button class="btn btn-primary mt-2" type="submit">Login</button>
+</form>
+
+
+{% endblock pizda %}  
+

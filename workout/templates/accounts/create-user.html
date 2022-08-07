@@ -1,0 +1,15 @@
+{% extends 'base.html' %}  
+{% load crispy_forms_tags %} 
+
+{% block pizda %}  
+<form method="POST"> {% csrf_token %}
+    {{ form|crispy }}
+    <div style="margin-top: 11px">
+        <button type="submit" class="btn-primary mt2"> Create Account </button>
+    </div>
+</form>
+
+
+
+
+{% endblock pizda %}

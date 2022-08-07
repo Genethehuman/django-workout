@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load crispy_forms_tags %}
+{% block pizda %}
+
+
+    <div class="row row-cols-1 row-cols-md-2 mb-3 text-center">
+      <div class="col">
+        <div class="card mb-4 rounded-3 shadow-sm">
+          <!-- <div class="card-header py-3">
+            <h4 class="my-0 fw-normal">Pro</h4>
+          </div> -->
+          <div class="card-body">
+            <h1 class="card-title pricing-card-title">Let's send it</h1>
+              <!-- Place for the form -->
+              <form method="POST" action="{% url 'email-sent' %}" enctype="multipart/form-data"> {% csrf_token %}
+                {{ form|crispy }}
+                
+                <button type="submit" class="w-50 btn btn btn-primary mt-2">Send</button>
+              </form>            
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock pizda %}

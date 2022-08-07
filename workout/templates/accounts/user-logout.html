@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block pizda %}
+
+<h3 class="text-center"> Are you sure you want to logout, {{ user.username }}?</h3>
+<form method="POST" action="." style="text-align:center">{% csrf_token %}
+    <button class="button btn-primary type=submit">Yes, logout!</button>
+</form>
+
+{% endblock pizda %}

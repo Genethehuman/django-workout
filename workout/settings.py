@@ -133,7 +133,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-MEADIA_ROOT = os.path.join(BASE_DIR, 'media/')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'mysite/static')
+]
+
+MEADIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEADIA_URL = '/media/'
 
 CSV_TABLES = os.path.join(MEADIA_ROOT, 'contacts_csv')
 

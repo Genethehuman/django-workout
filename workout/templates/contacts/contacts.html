@@ -7,19 +7,27 @@
         <td>Email</td>
         <td>LinkedIn</td>
         <td>Website</td>
+        <td>Company</td>
     </tr>
+    {% for contact in all_contacts %}
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><a href="">remove contact</a></td>
+        <td>{{contact.name}}</td>
+        <td>{{contact.email}}</td>
+        <td>{{contact.linked_in}}</td>
+        <td>{{contact.website}}</td>
+        <td>{{contact.company}}</td>
+        <td><a href="">Remove</a></td>
     </tr>
+    {% endfor %}
     
     
 
 </table>
 <h5> <a href="{% url 'add-contacts' %}">Add contacts +</a> </h5>
+<form method="POST" enctype="multipart/form-data" action="{% url 'add-contacts-file' %}"> {% csrf_token %}
+    <input type="file" name="new_file">Choose file</button>
+    <button class="btn btn-primary" type="submit">Upload</button>
+</form>
 
 
 

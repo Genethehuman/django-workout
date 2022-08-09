@@ -5,14 +5,23 @@
 {% block pizda %}
 
 
-
+<div>
 <form method="POST"> {% csrf_token %} 
     <dev>
         {{ form|crispy }}
     </dev>
     <button class="btn btn-primary mt-2" type="submit">Login</button>
+    
 </form>
+    <p align="right">
+    <input type="button" value="Click Me" />
+    </p>
+    <button class="btn btn-primari mt-2" type="menu">Sign up</button>
 
+</div>
+    <br>
+    <p > Sign up </p>
+   
 
 {% endblock pizda %}  
 

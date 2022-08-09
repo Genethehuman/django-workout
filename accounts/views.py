@@ -2,9 +2,13 @@
 from multiprocessing import context
 from django.shortcuts import redirect, render
 
+from accounts.models import UserAccount
+
 from .forms import UserCreateForm, UserLoginForm
 from django.contrib.auth import authenticate, login, logout
+from .models import UserAccount
 from django.contrib.auth.models import User
+from .decorators import authenticated_user
 
 
 # Create your views here.
@@ -21,10 +25,14 @@ def create_user_view(request):
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password1')
             User.objects.create_user(username, email, password)
+            user_user = User.objects.get(username=username)
+            user_account = UserAccount(email=email, user=user_user)
+            user_account.save()
             print('Clean Email:', email)
             request.session['msg'] = f'{username}, your account has been created'
             return redirect('user-created')
     return render(request, 'accounts/create-user.html', context=context)
+
 
 def user_created_view(request):
     msg = request.session['msg']
@@ -33,7 +41,7 @@ def user_created_view(request):
     }
     return render(request, 'accounts/user-created.html', context=context)
 
-
+@authenticated_user
 def user_login_view(request):
     print(User.objects.all())
     form = UserLoginForm(request.POST or None)
@@ -68,10 +76,9 @@ def user_logout_view(request):
     return render(request, 'accounts/user-logout.html', context=context)
 
 def user_account_view(request):
-    user_id = request.session['user_id']
-    user = User.objects.get(id=user_id)
+    user_objects = UserAccount.objects.filter(user=request.user)
     context={
-        'user': user,
+        'user': user_objects,
     }
     
     return render(request, 'accounts/user-account.html', context=context)

@@ -80,7 +80,7 @@ def user_account_view(request):
     context={
         'user': user_objects,
     }
-    
+    #this is the change for a pull request
     return render(request, 'accounts/user-account.html', context=context)
 
 

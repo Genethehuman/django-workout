@@ -26,7 +26,9 @@ def create_user_view(request):
             password = form.cleaned_data.get('password1')
             User.objects.create_user(username, email, password)
             user_user = User.objects.get(username=username)
-            user_account = UserAccount(email=email, user=user_user)
+            user_account = UserAccount()
+            user_account.email = email
+            user_account.user = user_user
             user_account.save()
             print('Clean Email:', email)
             request.session['msg'] = f'{username}, your account has been created'

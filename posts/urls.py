@@ -13,23 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import include
-from django.conf import settings
-from django.conf.urls.static import static
-from django.contrib import admin
 from django.urls import path
-from mailsender.views import (
-    mail_sender_view, 
-    email_sent_view,
-)
+from .views import (
+                    AllPostsView,
+                    PostDetailView,
+                    CreatePostView,
+                    
+                    
+                )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', mail_sender_view, name='mail-sender'),
-    path('sent', email_sent_view, name='email-sent'),
-    path('accounts/', include('accounts.urls')),
-    path('contacts/', include('contacts.urls')),
-    path('posts/', include('posts.urls')),
-]
+    path('all-posts/', AllPostsView.as_view, name='all-posts'),
+    path('post/', PostDetailView.as_view, name='post'),
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]

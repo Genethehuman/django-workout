@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_forms_gds',
     'contacts',
+    'posts',
     
 ]
 
